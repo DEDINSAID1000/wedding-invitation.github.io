@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Общие настройки */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            /* Нежный градиентный фон */
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #4a4a4a;
+        }
+
+        /* Контейнер-карточка */
+        .invite-card {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            padding: 50px 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            /* Анимация появления */
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Декоративная рамка внутри */
+        .invite-card::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            border: 1px solid #d4af37; 
+/* Золотистый цвет */
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        /* Заголовки */
+        .title-top {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .divider {
+            width: 50px;
+            height: 2px;
+            background-color: #d4af37;
+            margin: 20px auto;
+        }
+
+        /* Фото */
+        .photo-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            border: 3px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            cursor: pointer;
+        }
+        
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Текст и детали */
+        .description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .info-block {
+            margin-bottom: 35px;
+        }
+
+        .info-item {
+            margin: 10px 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Кнопка */
+        .btn-confirm {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #d4af37;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-confirm:hover {
+            background-color: #bc9a2e;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Анимация */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Адаптация под мобильные */
+        @media (max-width: 480px) {
+            .title-top { font-size: 2rem; }
+            h1 { font-size: 1.4rem; }
+            .invite-card { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="invite-card">
+    <label class="photo-container" for="photo-upload">
+        <input type="file" id="photo-upload" accept="image/*" style="display: none;" onchange="previewPhoto(this)">
+        <span id="photo-text">Загрузить фото</span>
+        <img id="photo-preview" src="" alt="" style="display: none;">
+    </label>
+    
+    <div class="title-top">С любовью, приглашаем</div>
+    <h1>Вас на нашу свадьбу</h1>
+    
+    <div class="divider"></div>
+    
+    <p class="description">
+        Этот день станет особенным для нас, и мы очень хотим разделить его с самыми близкими людьми.
+    </p>
+<div class="info-block">
+        <div class="info-item">📅 16 июня 2026 года</div>
+        <div class="info-item">🕒 Начало в 17:00</div>
+        <div class="info-item">📍 Лофт "Атмосфера", зал 2</div>
+    </div>
+
+    <a href="https://t.me/sayzzz_f5" class="btn-confirm">Подтвердить участие</a>
+    
+    <p style="margin-top: 30px; font-size: 0.8rem; color: #999;">
+        Пожалуйста, ответьте до 6 июня
+    </p>
+</div>
+
+<script>
+    function previewPhoto(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var preview = document.getElementById('photo-preview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                document.getElementById('photo-text').style.display = 'none';
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+</body>
+</html>
